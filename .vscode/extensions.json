@@ -1,0 +1,21 @@
+{
+    "recommendations": [
+        "andreabbondanza.ignoregit",
+        "bierner.github-markdown-preview",
+        "codezombiech.gitignore",
+        "coenraads.bracket-pair-colorizer-2",
+        "donjayamanne.githistory",
+        "eamodio.gitlens",
+        "evgeniypeshkov.syntax-highlighter",
+        "felipecaputo.git-project-manager",
+        "ms-vscode.powershell",
+        "oderwat.indent-rainbow",
+        "piotrpalarz.vscode-gitignore-generator",
+        "redvanworkshop.explorer-exclude-vscode-extension",
+        "shan.code-settings-sync",
+        "usernamehw.errorlens",
+        "wwm.better-align",
+        "xshrim.txt-syntax",
+        "yzhang.markdown-all-in-one",
+    ]
+}
