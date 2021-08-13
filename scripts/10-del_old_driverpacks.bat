@@ -31,7 +31,7 @@ GOTO :eof
 
 :clean
 FOR /f "tokens=* usebackq" %%f IN (`DIR /b /on "%1_*.7z"`) DO SET "GOODFILE=%%f"
-ECHO Keepinп most recent driver file: %GOODFILE%
+ECHO Keeping most recent driver file: %GOODFILE%
 FOR %%f IN (%1_*.7z) DO IF NOT "%%f"=="%GOODFILE%" ECHO "%%f" & DEL "%%f"
 GOTO :eof
 
