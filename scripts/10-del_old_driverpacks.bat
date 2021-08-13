@@ -1,11 +1,20 @@
 
 @ECHO OFF
-ECHO Snappy Driver Installer
-ECHO Driver Pack Cleanup
-ECHO by Computer Bloke
+@SETLOCAL ENABLEEXTENSIONS
+
+ECHO.
+ECHO. *****************************************************
+ECHO. * Snappy Driver Installer                           *
+ECHO. *   Driver Pack Cleanup                             *
+ECHO. *                                                   *
+ECHO. * Removes old versions of diverpacks, keeping the   *
+ECHO. *    most recent ones.                              *
+ECHO. *                                                   *
+ECHO. * By Computer Bloke                                 *
+ECHO. *   Modded by Gesugao-san                           *
+ECHO. *****************************************************
 ECHO.
 
-@SETLOCAL ENABLEEXTENSIONS
 @CD /d "%~dp0/drivers"
 ATTRIB *.* -R
 FOR /f "tokens=1,2,3,4,5,6,7 delims=_. usebackq" %%i IN (`DIR /b *.7z`) DO CALL :cleanup %%i %%j %%k %%l %%m %%n %%o
@@ -22,8 +31,10 @@ GOTO :eof
 
 :clean
 FOR /f "tokens=* usebackq" %%f IN (`DIR /b /on "%1_*.7z"`) DO SET "GOODFILE=%%f"
-ECHO Keeping most recent driver file: %GOODFILE%
+ECHO Keepinп most recent driver file: %GOODFILE%
 FOR %%f IN (%1_*.7z) DO IF NOT "%%f"=="%GOODFILE%" ECHO "%%f" & DEL "%%f"
 GOTO :eof
 
 :end
+TIMEOUT 5
+EXIT /B %ERRORLEVEL%

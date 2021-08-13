@@ -1,35 +1,62 @@
 
 @ECHO OFF
-REM 32-bit version of SDI works BOTH on 32-bit and 64-bit Windows.
-REM 64-bit version of SDI works ONLY on 64-bit Windows.
-REM EXECEPTION: 32-bit version of SDI cannot run on Windows PE x64.
-REM 64-bit version is faster and doesn't have the 2GB RAM per process limitation.
+@SETLOCAL ENABLEEXTENSIONS
 
-TITLE=Snappy Driver Installer starter (autodetecting architecture)
+@REM 32-bit version of SDI works BOTH on 32-bit and 64-bit Windows.
+@REM 64-bit version of SDI works ONLY on 64-bit Windows.
+@REM EXECEPTION: 32-bit version of SDI cannot run on Windows PE x64.
+@REM 64-bit version is faster and doesn't have the 2GB RAM per process limitation.
 
-IF %PROCESSOR_ARCHITECTURE% == x86 (
-    IF NOT DEFINED PROCESSOR_ARCHITEW6432 GOTO bit32
-)
-GOTO bit64
+ECHO.
+ECHO. *****************************************************
+ECHO. * Snappy Driver Installer                           *
+ECHO. *   Starter with autodetecting architecture         *
+ECHO. *                                                   *
+ECHO. * Original by https://sdi-tool.org/download/        *
+ECHO. *   Modded by Gesugao-san                           *
+ECHO. *****************************************************
+ECHO.
 
-:bit32
-ECHO 32-bit
-SET xOS="R"
-GOTO cont
+TITLE=SDI starter (autodetecting architecture)
 
-:bit64
-ECHO 64-bit
-SET xOS="x64_R"
+SET SDIPath=%~dp0
+CD /d "%SDIPath%"
 
-:cont
-FOR /f "tokens=*" %%a in ('dir /b /od "%~dp0SDI_%xOS%*.exe"') do SET "SDIEXE=%%a"
-IF EXIST "%~dp0%SDIEXE%" (
- START "Snappy Driver Installer" /d"%~dp0" "%~dp0%SDIEXE%" %1 %2 %3 %4 %5 %6 %7 %8 %9
- GOTO ex
+ECHO Detecting OS architecture...
+IF %PROCESSOR_ARCHITECTURE% == x86 IF NOT DEFINED PROCESSOR_ARCHITEW6432 (
+    GOTO architecture_32bit
 ) ELSE (
- ECHO.
- ECHO  Not found 'Snappy Driver Installer'!
- ECHO.
- TIMEOUT 6
+    GOTO architecture_64bit
 )
-:ex
+
+:architecture_32bit
+ECHO. Detected: 32-bit
+SET xOS=R
+GOTO search_file
+
+:architecture_64bit
+ECHO. Detected: 64-bit
+SET xOS=x64_R
+GOTO search_file
+
+:search_file
+ECHO Searching for: "SDI_%xOS%*.exe"
+FOR /f "tokens=*" %%a IN ('DIR /b /od "%SDIPath%SDI_%xOS%*.exe"') DO SET "SDIEXE=%%a"
+IF EXIST "%SDIEXE%" (
+    @REM GLORIOUS
+    ECHO. SUCCESS! Target executable file found.
+    GOTO execute_file
+) ELSE (
+    ECHO.
+    ECHO. FATAL ERROR! Target executable file not found!
+    GOTO exit
+)
+
+:execute_file
+ECHO Starting SDI...
+START "Snappy Driver Installer" /d "%SDIPath%" "%SDIPath%%SDIEXE%" %1 %2 %3 %4 %5 %6 %7 %8 %9
+GOTO exit
+
+:exit
+TIMEOUT 5
+EXIT /B %ERRORLEVEL%
