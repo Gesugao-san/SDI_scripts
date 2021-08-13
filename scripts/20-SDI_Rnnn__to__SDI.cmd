@@ -8,16 +8,22 @@
 ::***********************************************************************************
 ::
 ::SET SDIPath to location of batch file which should be with SDI_Rnnn.exe
+
 SET SDIPath=%~dp0
 PUSHD %SDIPath%
+
 ::Get the newest SDI_Rnnn.exe file
 FOR /F "delims=|" %%I IN ('DIR "SDI_R*.exe" /B /O:D') DO SET NewestSDI=%%I
+
 :: Run SDI update
 CALL %NewestSDI% /autoupdate /autoclose
+
 ::Make sure we still have most current executable in case one was just downloaded
 FOR /F "delims=|" %%I IN ('DIR "SDI_R*.exe" /B /O:D') DO SET NewestSDI=%%I
+
 ::Copy current version to SDI.exe
 COPY %NewestSDI% SDI.exe /Y
+
 POPD
 
 @REM https://sdi-tool.org/settings/
