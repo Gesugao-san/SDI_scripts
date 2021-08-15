@@ -1,6 +1,8 @@
 
 @ECHO OFF
 @SETLOCAL ENABLEEXTENSIONS
+SET "VERBOSE_OUTPUT=true"
+
 
 ECHO.
 ECHO. *****************************************************
@@ -17,24 +19,60 @@ ECHO. *   Modded by Gesugao-san                           *
 ECHO. *****************************************************
 ECHO.
 
+
+ECHO Verbose output: %VERBOSE_OUTPUT%
+TITLE=SDI Updater SDI.exe
+
+
 ::SET SDIPath to location of batch file which should be with SDI_Rnnn.exe
 SET SDIPath=%~dp0
 
 PUSHD %SDIPath%
 
 ::Get the newest SDI_Rnnn.exe file
-FOR /F "delims=|" %%I IN ('DIR "SDI_R*.exe" /B /O:D') DO SET NewestSDI=%%I
+IF %VERBOSE_OUTPUT% == true ECHO. *** & ECHO Searching for: "SDI_R*.exe"
+FOR /F "delims=|" %%I IN ('DIR "%SDIPath%SDI_R*.exe" /B /O:D /A:-D') DO SET NewestSDI=%%I
+IF EXIST "%NewestSDI%" (
+    ECHO. OK
+) ELSE (
+    IF %VERBOSE_OUTPUT% == true (
+        ECHO.
+        ECHO. FATAL ERROR! Target executable file not found!
+    ) ELSE (
+        Error: target executable file not found, exiting.
+    )
+    GOTO end
+)
+IF %VERBOSE_OUTPUT% == true ECHO. *** & ECHO.
 
 :: Run SDI update
+IF %VERBOSE_OUTPUT% == true ECHO. *** & ECHO Run SDI update
 CALL %NewestSDI% /autoupdate /autoclose
+IF %VERBOSE_OUTPUT% == true ECHO. *** & ECHO.
 
 ::Make sure we still have most current executable in case one was just downloaded
-FOR /F "delims=|" %%I IN ('DIR "SDI_R*.exe" /B /O:D') DO SET NewestSDI=%%I
+IF %VERBOSE_OUTPUT% == true ECHO. *** & ECHO Searching for most current: "SDI_R*.exe"
+FOR /F "delims=|" %%I IN ('DIR "%SDIPath%SDI_R*.exe" /B /O:D /A:-D') DO SET NewestSDI=%%I
+IF EXIST "%NewestSDI%" (
+    ECHO. OK
+) ELSE (
+    IF %VERBOSE_OUTPUT% == true (
+        ECHO.
+        ECHO. FATAL ERROR! Target executable file not found!
+    ) ELSE (
+        Error: target executable file not found, exiting.
+    )
+    GOTO end
+)
+IF %VERBOSE_OUTPUT% == true ECHO. *** & ECHO.
 
 ::Copy current version to SDI.exe
+IF %VERBOSE_OUTPUT% == true ECHO. *** & ECHO Copy current version to SDI.exe
 COPY %NewestSDI% SDI.exe /Y
+IF %VERBOSE_OUTPUT% == true ECHO. *** & ECHO.
 
 POPD
 
-TIMEOUT 5
+:end
+IF %VERBOSE_OUTPUT% == true TIMEOUT 10
 EXIT /B %ERRORLEVEL%
