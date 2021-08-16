@@ -3,22 +3,24 @@
 @SETLOCAL ENABLEEXTENSIONS
 SET "VERBOSE_OUTPUT=true"
 SET SDIPath=%~dp0
+CLS
 
-ECHO.
-ECHO. *****************************************************
-ECHO. * Snappy Driver Installer                           *
-ECHO. *   Starter with autodetecting architecture         *
-ECHO. *                                                   *
-ECHO. *                                                   *
-ECHO. *                                                   *
-ECHO. *                                                   *
-ECHO. *                                                   *
-ECHO. *                                                   *
-ECHO. * Original by https://sdi-tool.org/download/        *
-ECHO. *   Modded by Gesugao-san                           *
-ECHO. *****************************************************
-ECHO.
-
+IF %VERBOSE_OUTPUT% == true (
+    ECHO.
+    ECHO. *****************************************************
+    ECHO. * Snappy Driver Installer                           *
+    ECHO. *   Starter with autodetecting architecture         *
+    ECHO. *                                                   *
+    ECHO. *                                                   *
+    ECHO. *                                                   *
+    ECHO. *                                                   *
+    ECHO. *                                                   *
+    ECHO. *                                                   *
+    ECHO. * Original by https://sdi-tool.org/download/        *
+    ECHO. *   Modded by Gesugao-san                           *
+    ECHO. *****************************************************
+    ECHO.
+)
 
 @REM 32-bit version of SDI works BOTH on 32-bit and 64-bit Windows.
 @REM 64-bit version of SDI works ONLY on 64-bit Windows.
@@ -27,7 +29,7 @@ ECHO.
 
 ECHO Verbose output: %VERBOSE_OUTPUT%
 TITLE=SDI starter (autodetecting architecture)
-CD /d "%SDIPath%"
+CD /D "%SDIPath%"
 
 ECHO Detecting OS architecture...
 IF %PROCESSOR_ARCHITECTURE% == x86 IF NOT DEFINED PROCESSOR_ARCHITEW6432 (
@@ -56,7 +58,7 @@ GOTO file_search
 
 :file_search
 IF %VERBOSE_OUTPUT% == true ECHO Searching for: "SDI_%xOS%*.exe"
-FOR /f "tokens=*" %%a IN ('DIR "%SDIPath%SDI_%xOS%*.exe" /B /O:D') DO SET "SDIEXE=%%a"
+FOR /F "tokens=*" %%a IN ('DIR "%SDIPath%SDI_%xOS%*.exe" /B /O:D') DO SET "SDIEXE=%%a"
 IF EXIST "%SDIEXE%" (
     IF %VERBOSE_OUTPUT% == true (
         @REM GLORIOUS

@@ -2,23 +2,25 @@
 @ECHO OFF
 @SETLOCAL ENABLEEXTENSIONS
 SET "VERBOSE_OUTPUT=true"
+CLS
 
 
-ECHO.
-ECHO. *****************************************************
-ECHO. * Snappy Driver Installer                           *
-ECHO. *   Updater SDI.exe from last SDI_R***.exe          *
-ECHO. *                                                   *
-ECHO. * Keep SDI.exe updated with the latest drivers and  *
-ECHO. *   version of SDI_Rnnn.exe                         *
-ECHO. * NOTE: Put this batch file in the SDI_UPDATE       *
-ECHO. *   directory with the SDI_Rnnn.exe file            *
-ECHO. *                                                   *
-ECHO. * Original by https://sdi-tool.org/settings/        *
-ECHO. *   Modded by Gesugao-san                           *
-ECHO. *****************************************************
-ECHO.
-
+IF %VERBOSE_OUTPUT% == true (
+    ECHO.
+    ECHO. *****************************************************
+    ECHO. * Snappy Driver Installer                           *
+    ECHO. *   Updater SDI.exe from last SDI_R***.exe          *
+    ECHO. *                                                   *
+    ECHO. * Keep SDI.exe updated with the latest drivers and  *
+    ECHO. *   version of SDI_Rnnn.exe                         *
+    ECHO. * NOTE: Put this batch file in the SDI_UPDATE       *
+    ECHO. *   directory with the SDI_Rnnn.exe file            *
+    ECHO. *                                                   *
+    ECHO. * Original by https://sdi-tool.org/settings/        *
+    ECHO. *   Modded by Gesugao-san                           *
+    ECHO. *****************************************************
+    ECHO.
+)
 
 ECHO Verbose output: %VERBOSE_OUTPUT%
 TITLE=SDI Updater SDI.exe

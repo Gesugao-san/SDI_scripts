@@ -3,30 +3,32 @@
 @SETLOCAL ENABLEEXTENSIONS
 SET "VERBOSE_OUTPUT=true"
 SET SDIPath=%~dp0
+CLS
 
-ECHO.
-ECHO. *****************************************************
-ECHO. * Snappy Driver Installer                           *
-ECHO. *   All driverpacks unpacker                        *
-ECHO. *                                                   *
-ECHO. * Script for unpacking all driverpacks              *
-ECHO. *   (requires about 90GB).                          *
-ECHO. *                                                   *
-ECHO. *                                                   *
-ECHO. *                                                   *
-ECHO. * Original by https://sdi-tool.org/settings/        *
-ECHO. *   Modded by Gesugao-san                           *
-ECHO. *****************************************************
-ECHO.
-
+IF %VERBOSE_OUTPUT% == true (
+    ECHO.
+    ECHO. *****************************************************
+    ECHO. * Snappy Driver Installer                           *
+    ECHO. *   All driverpacks unpacker                        *
+    ECHO. *                                                   *
+    ECHO. * Script for unpacking all driverpacks              *
+    ECHO. *   ^(requires about 90GB^)                           *
+    ECHO. *                                                   *
+    ECHO. *                                                   *
+    ECHO. *                                                   *
+    ECHO. * Original by https://sdi-tool.org/settings/        *
+    ECHO. *   Modded by Gesugao-san                           *
+    ECHO. *****************************************************
+    ECHO.
+)
 
 ECHO Verbose output: %VERBOSE_OUTPUT%
 TITLE=SDI All driverpacks unpacker
-CD /d "%SDIPath%"
+CD /D "%SDIPath%"
 
 @REM Get the newest SDI_Rnnn.exe file
 IF %VERBOSE_OUTPUT% == true ECHO. *** & ECHO Searching for: "SDI_R*.exe"
-FOR /f "tokens=*" %%a IN ('DIR "%SDIPath%SDI_R*.exe" /B /O:D /A:-D') DO SET "SDIEXE=%%a"
+FOR /F "tokens=*" %%a IN ('DIR "%SDIPath%SDI_R*.exe" /B /O:D /A:-D') DO SET "SDIEXE=%%a"
 IF EXIST "%SDIEXE%" (
     ECHO. OK
 ) ELSE (
@@ -34,7 +36,7 @@ IF EXIST "%SDIEXE%" (
         ECHO.
         ECHO. FATAL ERROR! Target executable file not found!
     ) ELSE (
-        Error: target executable file not found, exiting.
+        ECHO. Error: target executable file not found, exiting.
     )
     GOTO end
 )

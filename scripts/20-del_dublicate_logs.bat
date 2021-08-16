@@ -3,26 +3,28 @@
 @SETLOCAL ENABLEEXTENSIONS
 SET "VERBOSE_OUTPUT=true"
 SET SDIPath=%~dp0
+CLS
 
-ECHO.
-ECHO. *****************************************************
-ECHO. * Snappy Driver Installer                           *
-ECHO. *   Logs Cleanup                                    *
-ECHO. *                                                   *
-ECHO. * Removes old versions and equals dublicates of     *
-ECHO. *   logs, keeping the most recent ones.             *
-ECHO. *                                                   *
-ECHO. *                                                   *
-ECHO. *                                                   *
-ECHO. * By JosefZ                                         *
-ECHO. *   Modded by Gesugao-san                           *
-ECHO. *****************************************************
-ECHO.
-
+IF %VERBOSE_OUTPUT% == true (
+    ECHO.
+    ECHO. *****************************************************
+    ECHO. * Snappy Driver Installer                           *
+    ECHO. *   Logs Cleanup                                    *
+    ECHO. *                                                   *
+    ECHO. * Removes old versions and equals dublicates of     *
+    ECHO. *   logs, keeping the most recent ones.             *
+    ECHO. *                                                   *
+    ECHO. *                                                   *
+    ECHO. *                                                   *
+    ECHO. * Original by JosefZ                                *
+    ECHO. *   Modded by Gesugao-san                           *
+    ECHO. *****************************************************
+    ECHO.
+)
 
 ECHO Verbose output: %VERBOSE_OUTPUT%
 TITLE=SDI Logs Cleanup
-CD /d "%SDIPath%"
+CD /D "%SDIPath%"
 
 PUSHD "%~dp0logs"
 
