@@ -1,6 +1,6 @@
 
 @ECHO OFF
-@SETLOCAL ENABLEEXTENSIONS
+@SETLOCAL ENABLEEXTENSIONS ENABLEDELAYEDEXPANSION
 SET "VERBOSE_OUTPUT=true"
 SET SDIPath=%~dp0
 CLS
@@ -33,11 +33,11 @@ CD ..
 GOTO :end
 
 :cleanup
-IF /I "%7"=="7z" CALL :clean %1_%2_%3_%4_%5 %6 && GOTO :eof
-IF /I "%6"=="7z" CALL :clean %1_%2_%3_%4 %5 && GOTO :eof
-IF /I "%5"=="7z" CALL :clean %1_%2_%3 %4 && GOTO :eof
-IF /I "%4"=="7z" CALL :clean %1_%2 %3 && GOTO :eof
-IF /I "%3"=="7z" CALL :clean %1 %2 && GOTO :eof
+IF /I "%7" == "7z" CALL :clean %1_%2_%3_%4_%5 %6 && GOTO :eof
+IF /I "%6" == "7z" CALL :clean %1_%2_%3_%4 %5 && GOTO :eof
+IF /I "%5" == "7z" CALL :clean %1_%2_%3 %4 && GOTO :eof
+IF /I "%4" == "7z" CALL :clean %1_%2 %3 && GOTO :eof
+IF /I "%3" == "7z" CALL :clean %1 %2 && GOTO :eof
 GOTO :eof
 
 :clean
@@ -56,4 +56,5 @@ GOTO :eof
 
 :end
 IF %VERBOSE_OUTPUT% == true TIMEOUT 10
+ENDLOCAL
 EXIT /B %ERRORLEVEL%
