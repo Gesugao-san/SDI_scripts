@@ -7,7 +7,7 @@ CLS
 
 IF %VERBOSE_OUTPUT% == true (
     ECHO.
-    ECHO. *****************************************************
+    ECHO. * * * * * * * * * * * * * * * * * * * * * * * * * * *
     ECHO. * Snappy Driver Installer                           *
     ECHO. *   Updater SDI.exe from last SDI_R***.exe          *
     ECHO. *                                                   *
@@ -18,7 +18,7 @@ IF %VERBOSE_OUTPUT% == true (
     ECHO. *                                                   *
     ECHO. * Original by https://sdi-tool.org/settings/        *
     ECHO. *   Modded by Gesugao-san                           *
-    ECHO. *****************************************************
+    ECHO. * * * * * * * * * * * * * * * * * * * * * * * * * * *
     ECHO.
 )
 

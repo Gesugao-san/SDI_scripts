@@ -7,18 +7,18 @@ CLS
 
 IF %VERBOSE_OUTPUT% == true (
     ECHO.
-    ECHO. *****************************************************
+    ECHO. * * * * * * * * * * * * * * * * * * * * * * * * * * *
     ECHO. * Snappy Driver Installer                           *
     ECHO. *   All driverpacks unpacker                        *
     ECHO. *                                                   *
     ECHO. * Script for unpacking all driverpacks              *
-    ECHO. *   ^(requires about 90GB^)                           *
+    ECHO. *   ^(requires ~90GB^)                              *
     ECHO. *                                                   *
     ECHO. *                                                   *
     ECHO. *                                                   *
     ECHO. * Original by https://sdi-tool.org/settings/        *
     ECHO. *   Modded by Gesugao-san                           *
-    ECHO. *****************************************************
+    ECHO. * * * * * * * * * * * * * * * * * * * * * * * * * * *
     ECHO.
 )
 

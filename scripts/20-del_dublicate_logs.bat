@@ -7,7 +7,7 @@ CLS
 
 IF %VERBOSE_OUTPUT% == true (
     ECHO.
-    ECHO. *****************************************************
+    ECHO. * * * * * * * * * * * * * * * * * * * * * * * * * * *
     ECHO. * Snappy Driver Installer                           *
     ECHO. *   Logs Cleanup                                    *
     ECHO. *                                                   *
@@ -18,7 +18,7 @@ IF %VERBOSE_OUTPUT% == true (
     ECHO. *                                                   *
     ECHO. * Original by JosefZ                                *
     ECHO. *   Modded by Gesugao-san                           *
-    ECHO. *****************************************************
+    ECHO. * * * * * * * * * * * * * * * * * * * * * * * * * * *
     ECHO.
 )
 

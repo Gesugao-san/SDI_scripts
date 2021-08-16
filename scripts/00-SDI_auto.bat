@@ -7,7 +7,7 @@ CLS
 
 IF %VERBOSE_OUTPUT% == true (
     ECHO.
-    ECHO. *****************************************************
+    ECHO. * * * * * * * * * * * * * * * * * * * * * * * * * * *
     ECHO. * Snappy Driver Installer                           *
     ECHO. *   Starter with autodetecting architecture         *
     ECHO. *                                                   *
@@ -18,7 +18,7 @@ IF %VERBOSE_OUTPUT% == true (
     ECHO. *                                                   *
     ECHO. * Original by https://sdi-tool.org/download/        *
     ECHO. *   Modded by Gesugao-san                           *
-    ECHO. *****************************************************
+    ECHO. * * * * * * * * * * * * * * * * * * * * * * * * * * *
     ECHO.
 )
 
